@@ -7,6 +7,6 @@
 <style scoped>
     #preview{
         /* border: 1px solid yellow; */
-        min-height: 100px;
+        /* min-height: 100px; */
     }  
 </style>
