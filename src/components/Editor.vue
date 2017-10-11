@@ -8,63 +8,82 @@
                     </svg>
                 </li>
                 <!-- <li :class="{active:currentTab === 0 }" @click="currentTab = 0">
-                                <svg class="icon">
-                                    <use xlink:href="#icon-card"></use>
-                                </svg>
-                            </li>
-                            <li :class="{active:currentTab === 1}" @click="currentTab = 1">
-                                <svg class="icon">
-                                    <use xlink:href="#icon-handbag"></use>
-                                </svg>
-                            </li>
-                            <li :class="{active:currentTab === 2}" @click="currentTab = 2">
-                                <svg class="icon">
-                                    <use xlink:href="#icon-book"></use>
-                                </svg>
-                            </li>
-                            <li :class="{active:currentTab === 3}" @click="currentTab = 3">
-                                <svg class="icon">
-                                    <use xlink:href="#icon-heart"></use>
-                                </svg>
-                            </li>
-                            <li :class="{active:currentTab === 4}" @click="currentTab = 4">
-                                <svg class="icon">
-                                    <use xlink:href="#icon-cup"></use>
-                                </svg>
-                            </li>
-                            <li :class="{active:currentTab === 5}" @click="currentTab = 5">
-                                <svg class="icon">
-                                    <use xlink:href="#icon-phone"></use>
-                                </svg>
-                            </li> -->
+                                        <svg class="icon">
+                                            <use xlink:href="#icon-card"></use>
+                                        </svg>
+                                    </li>
+                                    <li :class="{active:currentTab === 1}" @click="currentTab = 1">
+                                        <svg class="icon">
+                                            <use xlink:href="#icon-handbag"></use>
+                                        </svg>
+                                    </li>
+                                    <li :class="{active:currentTab === 2}" @click="currentTab = 2">
+                                        <svg class="icon">
+                                            <use xlink:href="#icon-book"></use>
+                                        </svg>
+                                    </li>
+                                    <li :class="{active:currentTab === 3}" @click="currentTab = 3">
+                                        <svg class="icon">
+                                            <use xlink:href="#icon-heart"></use>
+                                        </svg>
+                                    </li>
+                                    <li :class="{active:currentTab === 4}" @click="currentTab = 4">
+                                        <svg class="icon">
+                                            <use xlink:href="#icon-cup"></use>
+                                        </svg>
+                                    </li>
+                                    <li :class="{active:currentTab === 5}" @click="currentTab = 5">
+                                        <svg class="icon">
+                                            <use xlink:href="#icon-phone"></use>
+                                        </svg>
+                                    </li> -->
             </ol>
         </nav>
         <ol class="panes">
             <!-- li{tab $} *6 -->
             <li v-if="currentTab === 0">
-                <career-editor :profile = "profile"></career-editor>
+                <profile-editor :profile="profile"></profile-editor>
             </li>
-            <li v-if="currentTab === 1" >
-                <h2>工作经历</h2>
-                <el-form>
-                    <div v-for="(career,index) in careers" :key="index" class="container">
-                        <el-form-item label="公司">
-                            <el-input v-model="career.company"></el-input>
-                        </el-form-item>
-                        <el-form-item label="工作内容">
-                            <el-input v-model="career.content"></el-input>
-                        </el-form-item>
-                        <i class="el-icon-close" @click="removeCareer(index)"></i>
-                    </div>
-                        <el-button type="primary" @click="addCareer">添加</el-button>
+            <li v-if="currentTab === 1">
+                <common-editor :items="careers" :labels="labelsForCareers" :title="titleForCareers"></common-editor>
+            </li>
+            <li v-if="currentTab === 2">
+                <common-editor :items="educationHistory" :labels="labelsForEducationHistory" :title="titleForEducationHistory"></common-editor>
+            </li>
+            <li v-if="currentTab === 3">
+                <common-editor :items="projects" :labels="labelsForProjects" :title="titleForProjects"></common-editor>
+            </li>
+            <li v-if="currentTab === 4">
+                <common-editor :items="awards" :labels="labelsForAwards" :title="titleForAwards"></common-editor>
+            </li>
+            <li v-if="currentTab === 5">
+                <h2> 个人信息</h2>
+                <el-form label-position="top" label-width="80px">
+                    <el-form-item label="QQ">
+                        <el-input v-model="contacts.qq"></el-input>
+                    </el-form-item>
+                    <el-form-item label="WeChat">
+                        <el-input v-model="contacts.wx"></el-input>
+                    </el-form-item>
+                    <el-form-item label="Email">
+                        <el-input v-model="contacts.email"></el-input>
+                    </el-form-item>
+                    <el-form-item label="Phone">
+                        <el-input v-model="contacts.phone"></el-input>
+                    </el-form-item>
+                    <el-form-item label="Github">
+                        <el-input v-model="contacts.github"></el-input>
+                    </el-form-item>
                 </el-form>
-
             </li>
         </ol>
     </div>
 </template>
 <script>
-import CareerEditor from './CareerEditor'
+import ProfileEditor from './ProfileEditor'
+import CommonEditor from './CommonEditor'
+// import CareerEditor from './CareerEditor'
+// import EducationHistory from './EducationHistory'
 // export default {
 //   data:function(){
 //       return{
@@ -73,7 +92,8 @@ import CareerEditor from './CareerEditor'
 //   }
 // }
 export default {
-    components:{CareerEditor},
+    // components: { ProfileEditor, CareerEditor,EducationHistory},
+    components: { ProfileEditor, CommonEditor },
     data: function() {
         return {
             currentTab: 0,
@@ -86,23 +106,53 @@ export default {
             },
             careers: [
                 { company: '', content: '' }
-            ]
+            ],
+            labelsForCareers: [
+                '公司', '工作内容'
+            ],
+            titleForCareers: '工作经历',
+            educationHistory: [
+                { school: '', duration: '', degree: '' }
+            ],
+            labelsForEducationHistory: [
+                '学校', '时长', '学位'
+            ],
+            titleForEducationHistory: '教育背景',
+            projects: [
+                { project: '', content: '' }
+            ],
+            labelsForProjects: [
+                '项目名称', '工作内容'
+            ],
+            titleForProjects: '项目经历',
+            awards: [{
+                name: ''
+            }],
+            labelsForAwards: ['获奖名称'],
+            titleForAwards: '所获奖项',
+            contacts:{
+                qq:'',
+                wx:'',
+                phone:'',
+                github:'',
+                email:''
+            }
         }
     },
-    methods:{
-        addCareer:function(){
-            this.careers.push({
-                company:'',content:''
-            })
-        },
-        removeCareer:function(index){
-            this.careers.splice(index,1)
-        }
+    methods: {
+
     },
     created() {
         // console.log(this.profile)
         // setTimeout(() => {
         //     console.log(this.profile)
+        // }, 5000);事实证明，这个this.profile似乎类似于thunk函数，它不会立即得到，而是在真正执行的时候才获得最新的数据
+
+        // this.$nextTick(()=>{
+        //         console.log(this.careers)
+        // })事实证明$nextTick这个函数只会执行一次，不是说一有数据更新就会执行一次的
+        // setTimeout(() => {
+        //     console.log(this.careers)
         // }, 5000);
     }
 }
@@ -114,9 +164,9 @@ export default {
     /* border: 1px solid red; */
     min-height: 100px;
     display: flex;
-    div.el-form-item{
+    div.el-form-item {
         margin-bottom: 10px;
-        margin-top:10px;
+        margin-top: 10px;
     }
     >nav {
         background: rgba(0, 0, 0, 1);
@@ -139,14 +189,14 @@ export default {
     }
     >.panes {
         flex: 1;
-        .container{
+        .container {
             position: relative;
             margin-top: 10px;
-            .el-icon-close{
+            .el-icon-close {
                 position: absolute;
                 right: 0;
                 top: 10px;
-                color:#ddd
+                color: #ddd
             }
         }
         >li {
@@ -158,6 +208,5 @@ export default {
             }
         }
     }
-     
 }
 </style>
