@@ -2,7 +2,7 @@
     <div>
         <h2>{{title}}</h2>
         <el-form>
-            <div v-for="(item,index) in items" :key="index" class="container">
+            <div v-for="(item,index) in copyItems" :key="index" class="container">
                 <el-form-item :label="labels[index]" v-for="(key,index) in keys" :key="index">
                     <el-input v-model="item[key]"></el-input>
                 </el-form-item>
@@ -23,23 +23,27 @@ export default {
   computed:{
     keys:function(){
         return Object.keys(this.items[0])
+    },
+    // copyItems:function(){
+    //     return this.items.slice(0)
+    // }
+  },
+  data:function(){
+    return {
+        copyItems: this.items.slice(0)//就像文档中所说的一样，这时的items是个数组，所以此时修改workHistories这时父组件的items也会被修改
     }
   },
-//   data:function(){
-//     return {
-//         items:this.items//就像文档中所说的一样，这时的items是个数组，所以此时修改workHistories这时父组件的items也会被修改
-//     }
-//   },
   methods:{
       add:function(){
             let temp = {}
             this.keys.map((key)=>{
                 temp[key] = ''
             })
-            this.items.push(temp)
+
+            this.copyItems.push(temp)
         },
         remove:function(index){
-            this.items.splice(index,1)
+            this.copyItems.splice(index,1)
         }
   }
 }

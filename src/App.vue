@@ -2,8 +2,8 @@
     <div id="app">
         <topbar class="topbar"></topbar>
         <main>
-            <editor class="editor" />
-            <preview class="preview" />
+            <editor :resume="resume" class="editor" />
+            <preview :resume="resume" class="preview" />
         </main>
     </div>
 </template>
@@ -19,8 +19,53 @@ export default {
         Editor,
         Preview
 
+    },
+    data:function(){
+       return {
+           resume:{
+               profile: {
+                name: '',
+                city: '',
+                birth: ''
+            },
+            careers: [
+                { company: '', content: '' }
+            ],
+            labelsForCareers: [
+                '公司', '工作内容'
+            ],
+            titleForCareers: '工作经历',
+            educationHistory: [
+                { school: '', duration: '', degree: '' }
+            ],
+            labelsForEducationHistory: [
+                '学校', '时长', '学位'
+            ],
+            titleForEducationHistory: '教育背景',
+            projects: [
+                { project: '', content: '' }
+            ],
+            labelsForProjects: [
+                '项目名称', '具体描述'
+            ],
+            titleForProjects: '项目经历',
+            awards: [{
+                name: ''
+            }],
+            labelsForAwards: ['获奖名称'],
+            titleForAwards: '所获奖项',
+            contacts:{
+                qq:'',
+                wx:'',
+                phone:'',
+                github:'',
+                email:''
+            }
+        }
+           }
+       } 
     }
-}
+
 </script>
 
 <style>
