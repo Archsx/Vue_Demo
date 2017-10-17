@@ -45,16 +45,16 @@
                 <profile-editor :profile="resume.profile"></profile-editor>
             </li>
             <li v-if="currentTab === 1">
-                <common-editor :items="resume.careers" :labels="resume.labelsForCareers" :title="resume.titleForCareers"></common-editor>
+                <common-editor key="2" :items="resume.careers" :labels="resume.labelsForCareers" :title="resume.titleForCareers"></common-editor>
             </li>
             <li v-if="currentTab === 2">
-                <common-editor :items="resume.educationHistory" :labels="resume.labelsForEducationHistory" :title="resume.titleForEducationHistory"></common-editor>
+                <common-editor key="3" :items="resume.educationHistory" :labels="resume.labelsForEducationHistory" :title="resume.titleForEducationHistory"></common-editor>
             </li>
             <li v-if="currentTab === 3">
-                <common-editor :items="resume.projects" :labels="resume.labelsForProjects" :title="resume.titleForProjects"></common-editor>
+                <common-editor key="4" :items="resume.projects" :labels="resume.labelsForProjects" :title="resume.titleForProjects"></common-editor>
             </li>
             <li v-if="currentTab === 4">
-                <common-editor :items="resume.awards" :labels="resume.labelsForAwards" :title="resume.titleForAwards"></common-editor>
+                <common-editor key="5" :items="resume.awards" :labels="resume.labelsForAwards" :title="resume.titleForAwards"></common-editor>
             </li>
             <li v-if="currentTab === 5">
                 <h2> 个人信息</h2>

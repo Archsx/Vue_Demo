@@ -23,3 +23,27 @@ console.log(b)
         </el-form>
     </div>
 </template>
+
+
+
+var x = {};
+    Object.defineProperty(x, 'count', {
+        get: function() {
+            console.log('读取count属性 +1');
+            return 0;
+        }
+    });
+    console.log(x); // Object {count: 0}
+    x.count = 1;
+
+    var x = {};
+    Object.defineProperty(x, 'count', {
+        get: function() {
+            console.log('读取count属性 +1');
+            return 0;
+        }
+    });
+    console.log(x); // Object {count: 0}
+    x.count = 1;
+    // '读取count属性 +1'
+    console.log(x.count); // 0
