@@ -8,35 +8,35 @@
                     </svg>
                 </li>
                 <!-- <li :class="{active:currentTab === 0 }" @click="currentTab = 0">
-                                            <svg class="icon">
-                                                <use xlink:href="#icon-card"></use>
-                                            </svg>
-                                        </li>
-                                        <li :class="{active:currentTab === 1}" @click="currentTab = 1">
-                                            <svg class="icon">
-                                                <use xlink:href="#icon-handbag"></use>
-                                            </svg>
-                                        </li>
-                                        <li :class="{active:currentTab === 2}" @click="currentTab = 2">
-                                            <svg class="icon">
-                                                <use xlink:href="#icon-book"></use>
-                                            </svg>
-                                        </li>
-                                        <li :class="{active:currentTab === 3}" @click="currentTab = 3">
-                                            <svg class="icon">
-                                                <use xlink:href="#icon-heart"></use>
-                                            </svg>
-                                        </li>
-                                        <li :class="{active:currentTab === 4}" @click="currentTab = 4">
-                                            <svg class="icon">
-                                                <use xlink:href="#icon-cup"></use>
-                                            </svg>
-                                        </li>
-                                        <li :class="{active:currentTab === 5}" @click="currentTab = 5">
-                                            <svg class="icon">
-                                                <use xlink:href="#icon-phone"></use>
-                                            </svg>
-                                        </li> -->
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon-card"></use>
+                                                </svg>
+                                            </li>
+                                            <li :class="{active:currentTab === 1}" @click="currentTab = 1">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon-handbag"></use>
+                                                </svg>
+                                            </li>
+                                            <li :class="{active:currentTab === 2}" @click="currentTab = 2">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon-book"></use>
+                                                </svg>
+                                            </li>
+                                            <li :class="{active:currentTab === 3}" @click="currentTab = 3">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon-heart"></use>
+                                                </svg>
+                                            </li>
+                                            <li :class="{active:currentTab === 4}" @click="currentTab = 4">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon-cup"></use>
+                                                </svg>
+                                            </li>
+                                            <li :class="{active:currentTab === 5}" @click="currentTab = 5">
+                                                <svg class="icon">
+                                                    <use xlink:href="#icon-phone"></use>
+                                                </svg>
+                                            </li> -->
             </ol>
         </nav>
         <ol class="panes">
@@ -44,16 +44,16 @@
             <li v-if="currentTab === 0">
                 <profile-editor :profile="resume.profile"></profile-editor>
             </li>
-            <li v-if="currentTab === 1">
+            <li v-show="currentTab === 1">
                 <common-editor key="2" :items="resume.careers" :labels="resume.labelsForCareers" :title="resume.titleForCareers"></common-editor>
             </li>
-            <li v-if="currentTab === 2">
+            <li v-show="currentTab === 2">
                 <common-editor key="3" :items="resume.educationHistory" :labels="resume.labelsForEducationHistory" :title="resume.titleForEducationHistory"></common-editor>
             </li>
-            <li v-if="currentTab === 3">
+            <li v-show="currentTab === 3">
                 <common-editor key="4" :items="resume.projects" :labels="resume.labelsForProjects" :title="resume.titleForProjects"></common-editor>
             </li>
-            <li v-if="currentTab === 4">
+            <li v-show="currentTab === 4">
                 <common-editor key="5" :items="resume.awards" :labels="resume.labelsForAwards" :title="resume.titleForAwards"></common-editor>
             </li>
             <li v-if="currentTab === 5">
@@ -92,7 +92,7 @@ import CommonEditor from './CommonEditor'
 //   }
 // }
 export default {
-    props:['resume'],
+    props: ['resume'],
     // components: { ProfileEditor, CareerEditor,EducationHistory},
     components: { ProfileEditor, CommonEditor },
     data: function() {

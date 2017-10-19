@@ -26,6 +26,7 @@
 
 
 <script>
+import Bus from '../assets/bus.js'
 export default {
     props: ['resume'],
     computed: {
@@ -47,6 +48,13 @@ export default {
                 return this.haveValue(ele)
             })
         }
+    },
+    created:function(){
+        // console.log(Bus)
+        Bus.$on('update',(copyItems)=>{
+            // console.log(copyItems)
+            console.log(this)
+        })
     }
 }
 
@@ -54,8 +62,8 @@ export default {
 </script>
 
 <style scoped>
-#preview {
-    /* border: 1px solid yellow; */
-    /* min-height: 100px; */
-}
+/* #preview {
+    /* border: 1px solid yellow; 
+    /* min-height: 100px; 
+} */
 </style>

@@ -1,10 +1,11 @@
 <template>
-    <div id="app">
-        <topbar class="topbar"></topbar>
+    <div id="app" v-bind:class="{previewMode:isPreviewMode}">
+        <topbar class="topbar" @previewButtonClicked="preview"></topbar>
         <main>
             <editor :resume="resume" class="editor" />
             <preview :resume="resume" class="preview" />
         </main>
+        <el-button id="exitPreview" @click="exitPreview">退出预览</el-button>
     </div>
 </template>
 
@@ -20,51 +21,61 @@ export default {
         Preview
 
     },
-    data:function(){
-       return {
-           resume:{
-               profile: {
-                name: '',
-                city: '',
-                birth: ''
-            },
-            careers: [
-                { company: '', content: '' }
-            ],
-            labelsForCareers: [
-                '公司', '工作内容'
-            ],
-            titleForCareers: '工作经历',
-            educationHistory: [
-                { school: '', duration: '', degree: '' }
-            ],
-            labelsForEducationHistory: [
-                '学校', '时长', '学位'
-            ],
-            titleForEducationHistory: '教育背景',
-            projects: [
-                { project: '', content: '' }
-            ],
-            labelsForProjects: [
-                '项目名称', '具体描述'
-            ],
-            titleForProjects: '项目经历',
-            awards: [{
-                name: ''
-            }],
-            labelsForAwards: ['获奖名称'],
-            titleForAwards: '所获奖项',
-            contacts:{
-                qq:'',
-                wx:'',
-                phone:'',
-                github:'',
-                email:''
+    data: function() {
+        return {
+            isPreviewMode: false,
+            resume: {
+                profile: {
+                    name: '',
+                    city: '',
+                    birth: ''
+                },
+                careers: [
+                    { company: '', content: '' }
+                ],
+                labelsForCareers: [
+                    '公司', '工作内容'
+                ],
+                titleForCareers: '工作经历',
+                educationHistory: [
+                    { school: '', duration: '', degree: '' }
+                ],
+                labelsForEducationHistory: [
+                    '学校', '时长', '学位'
+                ],
+                titleForEducationHistory: '教育背景',
+                projects: [
+                    { project: '', content: '' }
+                ],
+                labelsForProjects: [
+                    '项目名称', '具体描述'
+                ],
+                titleForProjects: '项目经历',
+                awards: [{
+                    name: ''
+                }],
+                labelsForAwards: ['获奖名称'],
+                titleForAwards: '所获奖项',
+                contacts: {
+                    qq: '',
+                    wx: '',
+                    phone: '',
+                    github: '',
+                    email: ''
+                }
             }
         }
-           }
-       } 
+    },
+    methods: {
+        preview() {
+            this.isPreviewMode = true
+        },
+        exitPreview() {
+            this.isPreviewMode = false
+        }
+
     }
+}
 
 </script>
 
@@ -121,5 +132,30 @@ main .preview {
     flex: 1;
     margin: 16px 16px 16px 8px;
     background: #fff;
+}
+
+.previewMode .topbar {
+    display: none !important;
+}
+
+.previewMode .editor {
+    display: none !important;
+}
+
+.previewMode .preview {
+    margin: 32px auto 0;
+    max-width: 800px;
+    ;
+}
+
+#exitPreview {
+    display: none;
+}
+
+.previewMode #exitPreview {
+    display: inline-block;
+    position: fixed;
+    right: 16px;
+    top: 16px;
 }
 </style>
