@@ -2,15 +2,15 @@
     <div id="preview">
         <h1>{{resume.profile.name || '请填写姓名'}}</h1>
         <p>{{resume.profile.city || '请填写城市'}} | {{resume.profile.birth || '请填写出生日期'}}</p>
-        <section v-if="projectsIsNotEmpty">
+        <section v-if="projectsIsNotEmpty" class="item">
             <h2>项目</h2>
             <ul>
-                <li v-for="(project,index) in filterArray(resume.projects)" :key="index">
+                <li v-for="(project,index) in filterArray(resume.projects)" :key="index" >
                     {{project.project}} {{project.content}}
                 </li>
             </ul>
         </section>
-        <section v-if="filterArray(resume.careers).length > 0">
+        <section v-if="filterArray(resume.careers).length > 0" class="item">
             <h2>工作经历</h2>
             <ul>
                 <li v-for="(work,index) in filterArray(resume.careers)" :key="index">
@@ -26,7 +26,7 @@
 
 
 <script>
-import Bus from '../assets/bus.js'
+// import Bus from '../assets/bus.js'
 export default {
     props: ['resume'],
     computed: {
@@ -51,10 +51,8 @@ export default {
     },
     created:function(){
         // console.log(Bus)
-        Bus.$on('update',(copyItems)=>{
-            // console.log(copyItems)
-            console.log(this)
-        })
+        // Bus.$on('update',(copyItems)=>{
+        // })
     }
 }
 
@@ -62,6 +60,12 @@ export default {
 </script>
 
 <style scoped>
+section.item{
+    padding-top: 16px; 
+}
+.item li {
+    padding-top: 8px;
+}
 /* #preview {
     /* border: 1px solid yellow; 
     /* min-height: 100px; 
