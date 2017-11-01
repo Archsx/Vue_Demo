@@ -38,10 +38,10 @@ export default {
                 ],
                 titleForCareers: '工作经历',
                 educationHistory: [
-                    { school: '', duration: '', degree: '' }
+                    { school: '', speciality: '', degree: '' }
                 ],
                 labelsForEducationHistory: [
-                    '学校', '时长', '学位'
+                    '学校', '专业', '学位'
                 ],
                 titleForEducationHistory: '教育背景',
                 projects: [
@@ -54,8 +54,8 @@ export default {
                 awards: [{
                     name: ''
                 }],
-                labelsForAwards: ['获奖名称'],
-                titleForAwards: '所获奖项',
+                labelsForAwards: ['获奖名称/资格证书'],
+                titleForAwards: '所获奖项/证书',
                 contacts: {
                     qq: '',
                     wx: '',
@@ -132,6 +132,7 @@ body,
     flex: 1;
     margin: 16px 16px 16px 8px;
     background: #fff;
+    overflow: auto;
 }
 
 .previewMode .topbar {
@@ -143,9 +144,8 @@ body,
 }
 
 .previewMode .preview {
-    margin: 32px auto 0;
+    margin: 32px auto 0 !important;
     max-width: 800px;
-    ;
 }
 
 #exitPreview {
